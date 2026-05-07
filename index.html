@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YachtWay General Info</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Red+Hat+Display:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="screen" aria-labelledby="page-title">
+      <aside class="rail" aria-label="Listing steps">
+        <a class="brand" href="#" aria-label="Yacht Way">
+          <span>YACHT</span>
+          <span class="brand-light">WAY</span>
+          <img class="brand-mark" src="./assets/logo-subtract.svg" alt="" />
+        </a>
+
+        <nav class="steps">
+          <a class="step done" href="#">
+            <span class="step-icon turn">↵</span>
+            <span>Listing Contact</span>
+            <span class="step-mark">✓</span>
+            <span class="step-mark">⌁</span>
+          </a>
+          <a class="step current" href="#" aria-current="step">
+            <span class="step-icon boat">♟</span>
+            <span>General Info</span>
+          </a>
+          <a class="step" href="#"><span class="step-icon">✦</span><span>Power</span></a>
+          <a class="step" href="#"><span class="step-icon">✣</span><span>Vessel Features</span></a>
+          <a class="step" href="#"><span class="step-icon">▥</span><span>Accommodation</span></a>
+          <a class="step" href="#"><span class="step-icon">▣</span><span>Photos</span></a>
+          <a class="step" href="#"><span class="step-icon">■</span><span>Videos</span></a>
+          <a class="step tour" href="#"><span class="step-icon text">3D</span><span>3D Tour &amp; Brochure</span></a>
+          <a class="step" href="#"><span class="step-icon">≡</span><span>Listing Summary</span></a>
+        </nav>
+
+        <a class="create-new" href="#">CREATE NEW LISTING</a>
+      </aside>
+
+      <button class="draft-button" type="button">Save to Drafts &amp; Exit</button>
+
+      <section class="content" aria-label="General info form">
+        <header class="header">
+          <h1 id="page-title">General Info</h1>
+          <div class="heat">
+            <span class="snow">✳</span>
+            <span>Listing Heat: <strong>Freezing</strong></span>
+            <span class="help-dot">?</span>
+          </div>
+        </header>
+
+        <form class="form" novalidate>
+          <section class="group vessel-details">
+            <h2><span>⚓</span> Vessel Details</h2>
+            <div class="row two">
+              <div class="field combo" data-combo="make">
+                <label for="make-input">Make*</label>
+                <input id="make-input" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="make-options" />
+                <button class="combo-toggle" type="button" aria-label="Show make options"></button>
+                <div class="combo-menu" id="make-options" role="listbox"></div>
+                <p class="field-message" id="make-message"></p>
+              </div>
+              <div class="field combo" data-combo="model">
+                <label for="model-input">Model*</label>
+                <input id="model-input" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="model-options" />
+                <button class="combo-toggle" type="button" aria-label="Show model options"></button>
+                <div class="combo-menu" id="model-options" role="listbox"></div>
+                <p class="field-message" id="model-message"></p>
+              </div>
+            </div>
+            <div class="row two">
+              <div class="field combo" data-combo="year">
+                <label for="year-input">Year*</label>
+                <input id="year-input" autocomplete="off" inputmode="numeric" role="combobox" aria-expanded="false" aria-controls="year-options" />
+                <button class="combo-toggle" type="button" aria-label="Show year options"></button>
+                <div class="combo-menu year-menu" id="year-options" role="listbox"></div>
+                <p class="field-message" id="year-message"></p>
+              </div>
+              <label class="field hull-field" for="hull-number">
+                <span>Hull or Production Number*</span>
+                <input id="hull-number" maxlength="20" />
+                <i class="help-dot" title="If still in production or no official HIN exists yet, enter the production number as a placeholder.">?</i>
+                <p class="field-message" id="hull-message"></p>
+              </label>
+            </div>
+            <label class="field full"><span>Internal ID</span><input /><i class="help-dot">?</i></label>
+            <div class="row two">
+              <label class="field"><span>Current Name</span><input /></label>
+              <label class="field"><span>Launch Name</span><input /></label>
+            </div>
+            <div class="row two segmented" data-segmented="condition">
+              <button type="button" data-value="new">New</button>
+              <button type="button" data-value="pre-owned">Pre-owned</button>
+            </div>
+          </section>
+
+          <section class="group vessel-location">
+            <h2><span>◎</span> Vessel Location</h2>
+            <label class="field full select"><span>Vessel Location*</span><button type="button"></button><i class="help-dot">?</i></label>
+            <p class="hint">Your vessel will appear in search results for each location you add. No need to create separate listings.</p>
+            <label class="check"><input type="checkbox" /><span>Not For Sale to US Citizens while in US waters</span></label>
+          </section>
+
+          <section class="group vessel-type">
+            <h2><span>⚓</span> Vessel Type</h2>
+            <label class="field full select"><span>Vessel Type*</span><button type="button"></button><b>0/4</b></label>
+          </section>
+
+          <section class="group availability">
+            <h2><span>▣</span> Availability</h2>
+            <div class="row two segmented" data-segmented="availability">
+              <button type="button" data-value="now">Available Now</button>
+              <button type="button" data-value="later">Available Later</button>
+            </div>
+            <label class="field full calendar-field"><span>Completion Date</span><input id="completion-date" /><i>□</i></label>
+          </section>
+
+          <section class="group good-for">
+            <h2><span>⚓</span> Vessel Is Good For: <i class="help-dot">?</i></h2>
+            <div class="field full tag-field">
+              <span>Category</span>
+              <em>Watersports ×</em>
+              <em>Fishing ×</em>
+              <b>2/4</b>
+            </div>
+          </section>
+
+          <section class="group price-block">
+            <h2><span>$</span> Price</h2>
+            <div class="row two segmented" data-segmented="priceMode">
+              <button type="button" data-value="range">Price Range <i class="help-dot">?</i></button>
+              <button type="button" data-value="fixed">Fixed Price</button>
+            </div>
+            <label class="field full price-input"><span>Price*</span><input value="100,000" /><b>USD⌄</b></label>
+            <div class="market">
+              <div>
+                <strong>Price is $1020,156 above market</strong>
+                <p>Compared to similar listings on other platforms.</p>
+                <a href="#">Learn More</a>
+              </div>
+              <div>
+                <span>Market range:</span>
+                <strong>$4,200,000 - $7,200,000</strong>
+              </div>
+            </div>
+            <label class="check hide"><input type="checkbox" /><span>Hide Price</span></label>
+            <p class="warning"><strong>Warning!</strong> Buyers often skip listings without a price. Hiding your price reduce inquiries substantially.</p>
+          </section>
+
+          <section class="group taxes">
+            <h2><span>%</span> Taxes</h2>
+            <div class="row two">
+              <label class="field select"><span>Tax Status</span><button type="button"></button></label>
+              <label class="field select"><span>Import Duty Paid*</span><button type="button">Yes</button></label>
+            </div>
+            <label class="field select duty"><span>Country Of Duty*</span><button type="button"></button><i class="help-dot">?</i></label>
+          </section>
+
+          <section class="group warranties">
+            <h2><span>▤</span> Warranties</h2>
+            <div class="warranty-list">
+              <article class="warranty-card">
+                <p>General <span>Warranty</span></p>
+                <label class="datebox"><span>Expiration Date</span><input value="08.08.2029" /></label>
+                <i>□</i>
+                <button class="toggle" type="button" data-toggle="generalWarranty" aria-label="General Warranty enabled"><span></span></button>
+              </article>
+              <article class="warranty-card">
+                <p>Engine <span>Warranty</span></p>
+                <label class="datebox"><span>Expiration Date</span><input value="08.08.2029" /></label>
+                <i>□</i>
+                <button class="toggle" type="button" data-toggle="engineWarranty" aria-label="Engine Warranty enabled"><span></span></button>
+              </article>
+              <article class="warranty-card">
+                <p>Hull <span>Warranty</span></p>
+                <label class="datebox"><span>Expiration Date</span><input value="08.08.2029" /></label>
+                <i>□</i>
+                <button class="toggle" type="button" data-toggle="hullWarranty" aria-label="Hull Warranty enabled"><span></span></button>
+              </article>
+              <article class="warranty-card">
+                <p>Generator <span>Warranty</span></p>
+                <label class="datebox"><span>Expiration Date</span><input value="08.08.2029" /></label>
+                <i>□</i>
+                <button class="toggle" type="button" data-toggle="generatorWarranty" aria-label="Generator Warranty enabled"><span></span></button>
+              </article>
+            </div>
+          </section>
+
+          <div class="actions">
+            <button class="back" type="button">← Back</button>
+            <button class="save" type="submit">Save &amp; Next →</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <div class="modal-backdrop" data-modal hidden>
+      <section class="model-modal" role="dialog" aria-modal="true" aria-labelledby="model-modal-title">
+        <header>
+          <h2 id="model-modal-title">Create New Model</h2>
+          <button class="modal-close" type="button" aria-label="Close model creation modal">×</button>
+        </header>
+        <p class="modal-copy">This model will appear only under My Created Models for your account unless the shipyard adds an official version later.</p>
+        <label class="field modal-field" for="new-model-name">
+          <span>Model Name*</span>
+          <input id="new-model-name" />
+          <p class="field-message" id="new-model-message"></p>
+        </label>
+        <footer>
+          <button class="secondary-action" type="button" data-cancel-model>Cancel</button>
+          <button class="primary-action" type="button" data-create-model>Create Model</button>
+        </footer>
+      </section>
+    </div>
+    <script src="./app.js"></script>
+  </body>
+</html>
