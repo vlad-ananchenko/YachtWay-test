@@ -1,0 +1,112 @@
+@use "mixins" as *;
+
+.combo {
+  input {
+    padding-right: 44px;
+  }
+
+  &.open .combo-menu {
+    display: block;
+  }
+}
+
+.combo-toggle {
+  position: absolute;
+  right: 1px;
+  top: 1px;
+  width: 38px !important;
+  height: 38px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+
+  &::after {
+    @include chevron(14px);
+  }
+}
+
+.combo.open .combo-toggle::after {
+  @include chevron-open;
+}
+
+.field.is-locked .combo-toggle {
+  display: none;
+}
+
+.combo-menu {
+  position: absolute;
+  z-index: 60;
+  top: 44px;
+  left: 0;
+  right: 0;
+  display: none;
+  max-height: 260px;
+  overflow: auto;
+  padding: 8px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-menu);
+}
+
+.combo-group {
+  margin: 0 0 8px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.combo-group-title {
+  padding: 6px 8px;
+  color: var(--color-muted);
+  font-size: 11px;
+  font-weight: var(--weight-semibold);
+  line-height: 14px;
+  text-transform: uppercase;
+}
+
+.combo-option,
+.combo-create {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 34px;
+  padding: 6px 8px;
+  color: var(--color-ink);
+  background: var(--color-surface);
+  border: 0;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  line-height: 20px;
+  text-align: left;
+}
+
+.combo-option:hover:not(:disabled),
+.combo-option.active:not(:disabled),
+.combo-create:hover:not(:disabled) {
+  background: var(--color-purple-tint-hover);
+}
+
+.combo-option.connected {
+  color: var(--color-purple);
+  font-weight: var(--weight-semibold);
+}
+
+.combo-option small {
+  margin-left: auto;
+  color: var(--color-soft);
+  font-size: 11px;
+}
+
+.combo-create {
+  color: var(--color-purple);
+  font-weight: var(--weight-semibold);
+}
+
+.combo-empty {
+  padding: 10px 8px;
+  color: var(--color-muted);
+  font-size: 12px;
+  line-height: 18px;
+}

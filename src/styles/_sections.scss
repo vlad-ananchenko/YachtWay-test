@@ -1,0 +1,260 @@
+.form {
+  --section-gap: 38px;
+  --section-gap-tight: 34px;
+  --section-gap-price: 36px;
+  --field-gap: 20px;
+  --availability-heading-gap: 14px;
+  --availability-control-gap: 16px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.group {
+  position: relative;
+  margin: 0 0 var(--section-gap);
+
+  &:has(.field.open),
+  &:has(.combo.open) {
+    z-index: 40;
+  }
+
+  h2 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 16px;
+    color: var(--color-muted);
+    font-size: 14px;
+    font-weight: var(--weight-medium);
+    line-height: 20px;
+    text-transform: uppercase;
+    transform: translateY(-2px);
+
+    img {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+.row {
+  display: grid;
+  gap: var(--field-gap);
+  margin-bottom: var(--field-gap);
+
+  &.two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.vessel-details {
+  padding-top: 8px;
+
+  h2 {
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+}
+
+.availability {
+  margin-bottom: var(--section-gap-tight);
+
+  h2 {
+    margin-bottom: var(--availability-heading-gap);
+    transform: translateY(-4px);
+  }
+
+  .segmented {
+    transform: translateX(2px);
+    margin-bottom: var(--availability-control-gap);
+  }
+
+  .calendar-field {
+    transform: translateY(4px);
+  }
+}
+
+.vessel-type {
+  margin-bottom: 26px;
+}
+
+.taxes {
+  h2 {
+    transform: translate(0px, -8px);
+  }
+
+  .row {
+    margin-bottom: 20px;
+  }
+}
+
+.price-block {
+  margin-bottom: var(--section-gap-price);
+
+  h2 {
+    transform: translate(2px, -4px);
+  }
+
+  .segmented {
+    transform: translateX(2px);
+  }
+}
+
+.vessel-location {
+  margin-bottom: var(--section-gap-tight);
+
+  h2 {
+    margin-bottom: 20px;
+  }
+
+  .check {
+    margin-top: 0;
+    transform: translate(0, -6px);
+  }
+
+  .hint {
+    transform: translate(0, -6px);
+  }
+}
+
+.duty {
+  width: calc((100% - var(--field-gap)) / 2);
+  margin-bottom: 0;
+}
+
+.hint {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr);
+  align-items: start;
+  gap: 4px;
+  margin: 8px 0 20px;
+  color: var(--color-muted);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+
+  img {
+    width: 16px;
+    height: 16px;
+    margin-top: 2px;
+  }
+}
+
+.field.price-input {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  transform: translateY(4px);
+
+  b {
+    right: 8px;
+    min-width: 60px;
+    height: 28px;
+    padding: 4px 28px 4px 8px;
+    color: var(--color-ink);
+    background: var(--color-fill-soft);
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    line-height: 20px;
+
+    &::after {
+      content: "";
+      position: absolute;
+      right: 4px;
+      top: 50%;
+      width: 20px;
+      height: 20px;
+      background: #727279;
+      -webkit-mask: url("/assets/icons/chevron-down-icon.svg") center / 20px 20px no-repeat;
+      mask: url("/assets/icons/chevron-down-icon.svg") center / 20px 20px no-repeat;
+      transform: translateY(-50%);
+    }
+  }
+}
+
+.check.hide {
+  position: relative;
+  padding-top: 28px;
+  margin-bottom: 6px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 1px;
+    background: #f0f0f1;
+  }
+}
+
+.good-for {
+  h2 {
+    transform: translate(0, -8px);
+  }
+}
+
+.warranties {
+  h2 {
+    transform: translate(4px, -4px);
+  }
+
+  .warranty-list {
+    transform: translate(4px, 3px);
+  }
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  transform: translate(-2px, 14px);
+
+  button {
+    height: 40px;
+    border-radius: var(--radius-md);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  color: var(--color-ink);
+  background: transparent;
+  border: 0;
+}
+
+.save {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  color: var(--on-rail);
+  background: var(--color-purple);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.form-status {
+  width: 100%;
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  color: var(--color-success-text);
+  background: var(--color-success-bg);
+  border: 1px solid var(--color-success-border);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  line-height: 18px;
+
+  &:empty {
+    display: none;
+  }
+}

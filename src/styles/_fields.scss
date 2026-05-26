@@ -1,0 +1,410 @@
+@use "mixins" as *;
+
+.field {
+  --field-label-left: 10px;
+  --field-label-resting-top: 20px;
+  --field-label-floating-top: 1px;
+  --field-label-resting-size: 14px;
+  --field-label-floating-size: 12px;
+  --field-label-bg: var(--color-surface);
+
+  position: relative;
+  display: block;
+  min-height: 40px;
+
+  &.open {
+    z-index: 50;
+  }
+
+  &.full {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  > span:first-child,
+  > label:first-child {
+    position: absolute;
+    z-index: 2;
+    left: var(--field-label-left);
+    top: var(--field-label-resting-top);
+    max-width: calc(100% - 56px);
+    padding: 0 4px;
+    color: var(--color-muted);
+    background: transparent;
+    font-size: var(--field-label-resting-size);
+    font-weight: 400;
+    line-height: 20px;
+    white-space: nowrap;
+    pointer-events: none;
+    transform: translateY(-50%);
+    transform-origin: left center;
+    transition:
+      top var(--duration-fast) ease,
+      color var(--duration-fast) ease,
+      background-color var(--duration-fast) ease,
+      font-size var(--duration-fast) ease,
+      line-height var(--duration-fast) ease;
+  }
+
+  input,
+  button,
+  &.tag-field {
+    @include field-box;
+  }
+
+  input::placeholder {
+    color: transparent;
+  }
+
+  &:focus-within > span:first-child,
+  &:focus-within > label:first-child,
+  &:has(input:not(:placeholder-shown)) > span:first-child,
+  &:has(input:not(:placeholder-shown)) > label:first-child,
+  &:has(input:-webkit-autofill) > span:first-child,
+  &:has(input:-webkit-autofill) > label:first-child,
+  &.open > span:first-child,
+  &.open > label:first-child,
+  &.is-filled > span:first-child,
+  &.is-filled > label:first-child,
+  &.has-value > span:first-child,
+  &.has-value > label:first-child,
+  &.tag-field:has(em) > span:first-child,
+  &.tag-field:has(em) > label:first-child {
+    top: var(--field-label-floating-top);
+    color: var(--color-muted);
+    background: var(--field-label-bg);
+    font-size: var(--field-label-floating-size);
+    font-weight: 400;
+    line-height: 18px;
+  }
+
+  &:hover:not(:focus-within):not(.has-error):not(.is-locked):not(.is-disabled) {
+    > input:not(:disabled),
+    > button:not(.combo-toggle):not(:disabled) {
+      border-color: var(--color-line-strong);
+    }
+  }
+
+  &.tag-field:hover:not(:focus-within):not(.has-error):not(.is-disabled):not(.is-locked) {
+    border-color: var(--color-line-strong);
+  }
+
+  &:focus-within:not(.has-error):not(.is-locked):not(.is-disabled) {
+    > input,
+    > button:not(.combo-toggle):not(:disabled) {
+      border-color: var(--color-focus-ring);
+      border-width: 2px;
+      padding: 8px 11px 6px;
+    }
+  }
+
+  .help-dot {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    pointer-events: none;
+  }
+
+  b {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 34px;
+    height: 22px;
+    padding: 2px 7px;
+    color: var(--color-purple-tertiary);
+    background: var(--color-count-bg);
+    border-radius: var(--radius-pill);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    pointer-events: none;
+
+    .count-current,
+    .count-separator {
+      color: var(--color-purple-tertiary);
+    }
+
+    .count-max {
+      color: var(--color-purple);
+    }
+
+    &.is-full {
+      .count-current,
+      .count-separator,
+      .count-max {
+        color: var(--color-purple);
+      }
+    }
+  }
+}
+
+.field-message {
+  display: none;
+  margin: 0;
+  color: var(--color-error-text);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.field.has-error {
+  input,
+  button {
+    border-color: var(--color-error-border);
+  }
+
+  .field-message {
+    display: flex;
+    align-items: flex-start;
+    gap: 4px;
+    margin-top: 8px;
+
+    &::before {
+      content: "i";
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      background: var(--color-error-text);
+      border-radius: var(--radius-full);
+      color: #fff;
+      font-size: 10px;
+      font-style: italic;
+      font-weight: var(--weight-semibold);
+      line-height: 1;
+    }
+  }
+}
+
+.field.is-locked,
+.field.is-disabled,
+.field:has(> input:disabled),
+.field.select:has(> button:disabled) {
+  cursor: not-allowed;
+
+  > span:first-child,
+  > label:first-child {
+    color: #c5c6ca;
+  }
+
+  input,
+  > button:not(.combo-toggle),
+  &.tag-field {
+    color: #c5c6ca;
+    background: var(--color-surface-muted);
+    border-color: transparent;
+    cursor: not-allowed;
+  }
+
+  .help-dot,
+  b {
+    opacity: 0.55;
+  }
+}
+
+.field.select > button::after {
+  @include chevron(14px);
+}
+
+.field.select {
+  > b {
+    right: 52px;
+  }
+
+  > .help-dot {
+    right: 44px;
+  }
+}
+
+.combo:focus-within:not(.has-error):not(.is-locked) input {
+  padding-right: 43px;
+}
+
+.tag-field {
+  gap: 6px;
+  padding-top: 7px;
+  padding-bottom: 9px;
+  padding-left: 10px;
+  cursor: pointer;
+
+  em {
+    display: inline-flex;
+    align-items: center;
+    height: 24px;
+    padding: 2px 8px;
+    transform: translateY(-1px);
+    color: var(--color-ink);
+    background: var(--color-fill-soft);
+    border-radius: var(--radius-md);
+    font-style: normal;
+    font-size: 14px;
+    font-weight: var(--weight-medium);
+    line-height: 20px;
+  }
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 24px;
+  color: var(--color-ink);
+  font-size: 14px;
+  font-weight: var(--weight-medium);
+  line-height: 20px;
+  cursor: pointer;
+
+  input {
+    flex: 0 0 auto;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    appearance: none;
+    background: var(--color-surface);
+    border: 1px solid var(--color-line-strong);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition:
+      background var(--duration-fast) ease,
+      border-color var(--duration-fast) ease;
+
+    &:checked {
+      background-color: var(--color-purple);
+      border-color: var(--color-purple);
+      background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2012%2012'%3E%3Cpath%20d='M2.5%206.2L4.8%208.6L9.5%203.4'%20fill='none'%20stroke='%23fff'%20stroke-width='1.6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-purple-line);
+      outline-offset: 2px;
+    }
+  }
+}
+
+.check.hide {
+  align-items: flex-start;
+  font-size: 14px;
+  transform: translateY(-4px);
+
+  span {
+    transform: translateY(-4px);
+  }
+
+  input {
+    width: 20px;
+    height: 20px;
+    transform: translateY(-2px);
+  }
+}
+
+.calendar-field {
+  i {
+    position: absolute;
+    right: 11px;
+    top: 11px;
+    display: flex;
+    align-items: center;
+    font-style: normal;
+
+    img {
+      display: block;
+      width: 18px;
+      height: 18px;
+      filter: brightness(0) saturate(100%);
+    }
+  }
+
+  &.is-disabled input,
+  &.is-disabled i {
+    color: var(--color-soft);
+  }
+
+  &.is-disabled input {
+    background: var(--color-surface-muted);
+  }
+}
+
+.vessel-details .field {
+  --field-label-left: 8px;
+  --field-label-resting-top: 20px;
+  --field-label-floating-top: 7px;
+
+  > input,
+  &.select > button {
+    padding-top: 15px;
+    padding-bottom: 1px;
+  }
+
+  &:focus-within:not(.has-error):not(.is-locked):not(.is-disabled) {
+    > input,
+    &.select > button:not(:disabled) {
+      padding-top: 14px;
+      padding-bottom: 0;
+    }
+  }
+}
+
+.vessel-details .combo-toggle::after {
+  right: 12px;
+}
+
+.vessel-location .field.select {
+  margin-top: 4px;
+  transform: translateY(2px);
+
+  > span:first-child {
+    left: 12px;
+  }
+
+  > button {
+    padding-top: 11px;
+    padding-bottom: 5px;
+    padding-left: 12px;
+
+    &::after {
+      right: 10px;
+    }
+  }
+
+  > .help-dot {
+    right: 40px;
+  }
+}
+
+.vessel-type .field.select,
+.good-for .tag-field {
+  > b {
+    right: 48px;
+  }
+}
+
+.vessel-type .field.select > button::after,
+.good-for .tag-field .tag-trigger::after {
+  right: 12px;
+}
+
+.calendar-field {
+  --field-label-resting-top: 20px;
+}
+
+.good-for .tag-field {
+  --field-label-floating-top: -3px;
+
+  transform: translateY(-6px);
+
+  em {
+    transform: translateY(-3px);
+  }
+}
+
+.taxes .field {
+  transform: translate(2px, -4px);
+}

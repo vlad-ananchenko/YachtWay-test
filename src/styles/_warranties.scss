@@ -1,0 +1,126 @@
+.warranty-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.warranty-card {
+  display: grid;
+  grid-template-columns: 155px minmax(0, 1fr) 40px;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  height: 72px;
+  padding: 16px;
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+
+  p {
+    margin: 0;
+    color: var(--color-ink);
+    font-size: 16px;
+    line-height: 24px;
+
+    span {
+      color: var(--color-soft);
+    }
+  }
+
+  i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: normal;
+
+    img {
+      display: block;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &.is-disabled {
+    color: var(--color-soft);
+
+    .datebox input {
+      color: var(--color-soft);
+      background: var(--color-surface-muted);
+    }
+  }
+}
+
+.datebox {
+  position: relative;
+  display: block;
+  height: 40px;
+
+  span {
+    position: absolute;
+    left: 12px;
+    top: -8px;
+    z-index: 1;
+    padding: 0 4px;
+    color: var(--color-muted);
+    background: var(--color-surface);
+    font-size: 11px;
+    font-weight: var(--weight-medium);
+    line-height: 16px;
+  }
+
+  input {
+    width: 100%;
+    height: 40px;
+    padding: 10px 42px 10px 12px;
+    color: var(--color-ink);
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-xs);
+    font-size: 14px;
+    line-height: 20px;
+    outline: none;
+
+    &:focus {
+      border-color: var(--color-focus-ring);
+      border-width: 2px;
+    }
+  }
+
+  i {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    img {
+      filter: brightness(0) saturate(100%);
+    }
+  }
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 40px;
+  height: 22px;
+  padding: 2px;
+  background: var(--color-purple);
+  border: 0;
+  border-radius: var(--radius-pill);
+  transition: background var(--duration-fast) ease;
+
+  span {
+    width: 18px;
+    height: 18px;
+    background: var(--color-surface);
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-toggle);
+    transition: transform var(--duration-fast) ease;
+  }
+
+  &.is-off {
+    justify-content: flex-start;
+    background: rgba(34, 34, 34, 0.18);
+  }
+}

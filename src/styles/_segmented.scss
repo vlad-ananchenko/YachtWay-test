@@ -1,0 +1,32 @@
+.segmented {
+  margin-bottom: 0;
+
+  button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    height: 44px;
+    padding: 1px 20px 0;
+    color: var(--color-ink);
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-xs);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 28px;
+    text-align: center;
+
+    .help-dot {
+      position: static;
+      transform: none;
+    }
+
+    &.is-selected,
+    &[aria-pressed="true"] {
+      color: var(--color-purple);
+      border-color: var(--color-purple-line);
+      background: var(--color-purple-tint);
+    }
+  }
+}

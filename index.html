@@ -4,14 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>YachtWay General Info</title>
+    <script>
+      if (window.location.protocol === "file:") {
+        window.location.replace("http://localhost:5173/test-task/");
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Red+Hat+Display:wght@300;400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600&family=Red+Hat+Display:wght@300;400;500&family=Poppins:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <link rel="icon" href="data:," />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="/src/styles/main.scss" />
   </head>
   <body>
     <main class="screen" aria-labelledby="page-title">
@@ -19,27 +24,27 @@
         <a class="brand" href="#" aria-label="Yacht Way">
           <span>YACHT</span>
           <span class="brand-light">WAY</span>
-          <img class="brand-mark" src="./assets/logo-subtract.svg" alt="" />
+          <img class="brand-mark" src="/assets/icons/logo-subtract-icon.svg" alt="" />
         </a>
 
-        <nav class="steps">
+        <nav class="steps" aria-label="Listing creation steps">
           <a class="step done" href="#">
-            <span class="step-icon turn">↵</span>
+            <span class="step-icon"><img src="/assets/icons/handshake-icon.svg" width="16" height="16" aria-hidden="true" alt=""></span>
             <span>Listing Contact</span>
-            <span class="step-mark">✓</span>
-            <span class="step-mark">⌁</span>
+            <span class="step-mark"><img src="/assets/icons/check-mark-icon.svg" width="16" height="16" aria-hidden="true" alt=""></span>
+            <span class="step-mark"><img src="/assets/icons/pencil-icon.svg" width="16" height="16" aria-hidden="true" alt=""></span>
           </a>
           <a class="step current" href="#" aria-current="step">
-            <span class="step-icon boat">♟</span>
+            <span class="step-icon"><img src="/assets/icons/ship-solid-icon.svg" width="16" height="16" aria-hidden="true" alt=""></span>
             <span>General Info</span>
           </a>
-          <a class="step" href="#"><span class="step-icon">✦</span><span>Power</span></a>
-          <a class="step" href="#"><span class="step-icon">✣</span><span>Vessel Features</span></a>
-          <a class="step" href="#"><span class="step-icon">▥</span><span>Accommodation</span></a>
-          <a class="step" href="#"><span class="step-icon">▣</span><span>Photos</span></a>
-          <a class="step" href="#"><span class="step-icon">■</span><span>Videos</span></a>
-          <a class="step tour" href="#"><span class="step-icon text">3D</span><span>3D Tour &amp; Brochure</span></a>
-          <a class="step" href="#"><span class="step-icon">≡</span><span>Listing Summary</span></a>
+          <a class="step" href="#"><span class="step-icon"><img src="/assets/icons/lightning-icon.svg" width="16" height="16" aria-hidden="true" alt=""></span><span>Power</span></a>
+          <a class="step" href="#"><span class="step-icon"><img src="/assets/icons/stars-icon.svg" width="16" height="16" aria-hidden="true" alt=""></span><span>Vessel Features</span></a>
+          <a class="step" href="#"><span class="step-icon"><img src="/assets/icons/deck-icon.svg" width="16" height="16" aria-hidden="true" alt=""></span><span>Accommodation</span></a>
+          <a class="step" href="#"><span class="step-icon"><img src="/assets/icons/photo-camera-icon.svg" width="16" height="16" aria-hidden="true" alt=""></span><span>Photos</span></a>
+          <a class="step" href="#"><span class="step-icon"><img src="/assets/icons/video-camera-icon.svg" width="16" height="16" aria-hidden="true" alt=""></span><span>Videos</span></a>
+          <a class="step tour" href="#"><span class="step-icon"><img src="/assets/icons/3d-value-icon.svg" width="16" height="16" aria-hidden="true" alt=""></span><span>3D Tour &amp; Brochure</span></a>
+          <a class="step" href="#"><span class="step-icon"><img src="/assets/icons/list-icon.svg" width="16" height="16" aria-hidden="true" alt=""></span><span>Listing Summary</span></a>
         </nav>
 
         <a class="create-new" href="#">CREATE NEW LISTING</a>
@@ -51,26 +56,26 @@
         <header class="header">
           <h1 id="page-title">General Info</h1>
           <div class="heat">
-            <span class="snow">✳</span>
+            <span class="snow"><img class="snow-glyph" src="/assets/icons/snowflake-icon.svg" width="20" height="20" aria-hidden="true" alt=""></span>
             <span>Listing Heat: <strong>Freezing</strong></span>
-            <span class="help-dot">?</span>
+            <i class="help-dot"><img src="/assets/icons/question-mark-icon.svg" width="16" height="16" aria-hidden="true" alt=""></i>
           </div>
         </header>
 
-        <form class="form" novalidate>
+        <form class="form" novalidate aria-describedby="form-status">
           <section class="group vessel-details">
-            <h2><span>⚓</span> Vessel Details</h2>
+            <h2><img src="/assets/icons/ship-icon.svg" width="16" height="16" aria-hidden="true" alt=""> VESSEL DETAILS</h2>
             <div class="row two">
               <div class="field combo" data-combo="make">
                 <label for="make-input">Make*</label>
-                <input id="make-input" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="make-options" />
+                <input id="make-input" name="make" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="make-options" aria-describedby="make-message" aria-required="true" placeholder=" " />
                 <button class="combo-toggle" type="button" aria-label="Show make options"></button>
                 <div class="combo-menu" id="make-options" role="listbox"></div>
                 <p class="field-message" id="make-message"></p>
               </div>
               <div class="field combo" data-combo="model">
                 <label for="model-input">Model*</label>
-                <input id="model-input" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="model-options" />
+                <input id="model-input" name="model" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="model-options" aria-describedby="model-message" aria-required="true" placeholder=" " />
                 <button class="combo-toggle" type="button" aria-label="Show model options"></button>
                 <div class="combo-menu" id="model-options" role="listbox"></div>
                 <p class="field-message" id="model-message"></p>
@@ -79,22 +84,21 @@
             <div class="row two">
               <div class="field combo" data-combo="year">
                 <label for="year-input">Year*</label>
-                <input id="year-input" autocomplete="off" inputmode="numeric" role="combobox" aria-expanded="false" aria-controls="year-options" />
+                <input id="year-input" name="year" autocomplete="off" inputmode="numeric" role="combobox" aria-expanded="false" aria-controls="year-options" aria-describedby="year-message" aria-required="true" placeholder=" " />
                 <button class="combo-toggle" type="button" aria-label="Show year options"></button>
                 <div class="combo-menu year-menu" id="year-options" role="listbox"></div>
                 <p class="field-message" id="year-message"></p>
               </div>
               <label class="field hull-field" for="hull-number">
                 <span>Hull or Production Number*</span>
-                <input id="hull-number" maxlength="20" />
-                <i class="help-dot" title="If still in production or no official HIN exists yet, enter the production number as a placeholder.">?</i>
+                <input id="hull-number" name="hullNumber" maxlength="20" aria-describedby="hull-message" aria-required="true" placeholder=" " />
                 <p class="field-message" id="hull-message"></p>
               </label>
             </div>
-            <label class="field full"><span>Internal ID</span><input /><i class="help-dot">?</i></label>
+            <label class="field full"><span>Internal ID</span><input name="internalId" placeholder=" " /><i class="help-dot"><img src="/assets/icons/question-mark-icon.svg" width="16" height="16" aria-hidden="true" alt=""></i></label>
             <div class="row two">
-              <label class="field"><span>Current Name</span><input /></label>
-              <label class="field"><span>Launch Name</span><input /></label>
+              <label class="field"><span>Current Name</span><input name="currentName" placeholder=" " /></label>
+              <label class="field"><span>Launch Name</span><input name="launchName" placeholder=" " /></label>
             </div>
             <div class="row two segmented" data-segmented="condition">
               <button type="button" data-value="new">New</button>
@@ -103,115 +107,132 @@
           </section>
 
           <section class="group vessel-location">
-            <h2><span>◎</span> Vessel Location</h2>
-            <label class="field full select"><span>Vessel Location*</span><button type="button"></button><i class="help-dot">?</i></label>
-            <p class="hint">Your vessel will appear in search results for each location you add. No need to create separate listings.</p>
-            <label class="check"><input type="checkbox" /><span>Not For Sale to US Citizens while in US waters</span></label>
+            <h2><img src="/assets/icons/location-tag-icon.svg" width="16" height="16" aria-hidden="true" alt=""> VESSEL LOCATION</h2>
+            <div class="field full select" data-control="select" data-options="vesselLocations" data-required>
+              <span>Vessel Location*</span>
+              <button type="button" aria-describedby="vessel-location-hint"></button>
+              <i class="help-dot"><img src="/assets/icons/question-mark-icon.svg" width="16" height="16" aria-hidden="true" alt=""></i>
+            </div>
+            <p class="hint" id="vessel-location-hint">
+              <img src="/assets/icons/exclamation-mark-icon.svg" width="16" height="16" aria-hidden="true" alt="">
+              <span>Your vessel will appear in search results for each location you add. No need to create separate listings.</span>
+            </p>
+            <label class="check"><input type="checkbox" name="notForSaleUs" /><span>Not For Sale to US Citizens while in US waters</span></label>
           </section>
 
           <section class="group vessel-type">
-            <h2><span>⚓</span> Vessel Type</h2>
-            <label class="field full select"><span>Vessel Type*</span><button type="button"></button><b>0/4</b></label>
+            <h2><img src="/assets/icons/boat-icon.svg" width="16" height="16" aria-hidden="true" alt=""> VESSEL TYPE</h2>
+            <div class="field full select" data-control="multiselect" data-options="vesselTypes" data-max="4" data-required>
+              <span>Vessel Type*</span>
+              <button type="button"></button>
+            </div>
           </section>
 
           <section class="group availability">
-            <h2><span>▣</span> Availability</h2>
+            <h2><img src="/assets/icons/calendar-icon.svg" width="16" height="16" aria-hidden="true" alt=""> AVAILABILITY</h2>
             <div class="row two segmented" data-segmented="availability">
               <button type="button" data-value="now">Available Now</button>
               <button type="button" data-value="later">Available Later</button>
             </div>
-            <label class="field full calendar-field"><span>Completion Date</span><input id="completion-date" /><i>□</i></label>
+            <label class="field full calendar-field"><span>Completion Date</span><input id="completion-date" name="completionDate" placeholder=" " /><i><img src="/assets/icons/calendar-icon.svg" width="20" height="20" aria-hidden="true" alt=""></i></label>
           </section>
 
           <section class="group good-for">
-            <h2><span>⚓</span> Vessel Is Good For: <i class="help-dot">?</i></h2>
-            <div class="field full tag-field">
+            <h2><img src="/assets/icons/geometric-shapes%20-icon.svg" width="16" height="16" aria-hidden="true" alt=""> VESSEL IS GOOD FOR: <i class="help-dot"><img src="/assets/icons/question-mark-icon.svg" width="16" height="16" aria-hidden="true" alt=""></i></h2>
+            <div class="field full tag-field" data-control="tagfield" data-options="goodForOptions" data-max="4" data-default="Watersports,Fishing">
               <span>Category</span>
-              <em>Watersports ×</em>
-              <em>Fishing ×</em>
-              <b>2/4</b>
             </div>
           </section>
 
           <section class="group price-block">
-            <h2><span>$</span> Price</h2>
+            <h2><img src="/assets/icons/currency-icon.svg" width="16" height="16" aria-hidden="true" alt=""> PRICE</h2>
             <div class="row two segmented" data-segmented="priceMode">
-              <button type="button" data-value="range">Price Range <i class="help-dot">?</i></button>
+              <button type="button" data-value="range">Price Range <i class="help-dot"><img src="/assets/icons/question-mark-icon.svg" width="16" height="16" aria-hidden="true" alt=""></i></button>
               <button type="button" data-value="fixed">Fixed Price</button>
             </div>
-            <label class="field full price-input"><span>Price*</span><input value="100,000" /><b>USD⌄</b></label>
+            <label class="field full price-input"><span>Price*</span><input name="price" value="100,000" aria-required="true" /><b>USD</b></label>
             <div class="market">
               <div>
-                <strong>Price is $1020,156 above market</strong>
+                <strong class="market-signal">
+                  <span class="market-signal-icon" aria-hidden="true"></span>
+                  <span>Price is <img class="currency-inline-icon" src="/assets/icons/currency-icon.svg" width="12" height="12" aria-hidden="true" alt=""><span class="market-value">1,020,156 above market</span></span>
+                </strong>
                 <p>Compared to similar listings on other platforms.</p>
                 <a href="#">Learn More</a>
               </div>
               <div>
                 <span>Market range:</span>
-                <strong>$4,200,000 - $7,200,000</strong>
+                <strong>$4,200,000 – $7,200,000</strong>
               </div>
             </div>
-            <label class="check hide"><input type="checkbox" /><span>Hide Price</span></label>
-            <p class="warning"><strong>Warning!</strong> Buyers often skip listings without a price. Hiding your price reduce inquiries substantially.</p>
+            <label class="check hide"><input type="checkbox" name="hidePrice" aria-describedby="price-warning" /><span>Hide Price</span></label>
+            <p class="warning" id="price-warning"><strong>Warning!</strong> Buyers often skip listings without a price. Hiding your price reduce inquiries substantially.</p>
           </section>
 
           <section class="group taxes">
-            <h2><span>%</span> Taxes</h2>
+            <h2><img src="/assets/icons/percent-icon.svg" width="16" height="16" aria-hidden="true" alt=""> TAXES</h2>
             <div class="row two">
-              <label class="field select"><span>Tax Status</span><button type="button"></button></label>
-              <label class="field select"><span>Import Duty Paid*</span><button type="button">Yes</button></label>
+              <div class="field select" data-control="select" data-options="taxStatuses">
+                <span>Tax Status</span>
+                <button type="button"></button>
+              </div>
+              <div class="field select" data-control="select" data-options="importDutyOptions" data-default="Yes" data-required>
+                <span>Import Duty Paid*</span>
+                <button type="button"></button>
+              </div>
             </div>
-            <label class="field select duty"><span>Country Of Duty*</span><button type="button"></button><i class="help-dot">?</i></label>
+            <div class="field select duty" data-control="select" data-options="countriesOfDuty" data-required>
+              <span>Country Of Duty*</span>
+              <button type="button"></button>
+              <i class="help-dot"><img src="/assets/icons/question-mark-icon.svg" width="16" height="16" aria-hidden="true" alt=""></i>
+            </div>
           </section>
 
           <section class="group warranties">
-            <h2><span>▤</span> Warranties</h2>
+            <h2><img src="/assets/icons/file-icon.svg" width="16" height="16" aria-hidden="true" alt=""> WARRANTIES</h2>
             <div class="warranty-list">
               <article class="warranty-card">
                 <p>General <span>Warranty</span></p>
-                <label class="datebox"><span>Expiration Date</span><input value="08.08.2029" /></label>
-                <i>□</i>
+                <label class="datebox"><span>Expiration Date</span><input name="generalWarrantyExpiration" value="08.08.2029" /><i><img src="/assets/icons/calendar-icon.svg" width="20" height="20" aria-hidden="true" alt=""></i></label>
                 <button class="toggle" type="button" data-toggle="generalWarranty" aria-label="General Warranty enabled"><span></span></button>
               </article>
               <article class="warranty-card">
                 <p>Engine <span>Warranty</span></p>
-                <label class="datebox"><span>Expiration Date</span><input value="08.08.2029" /></label>
-                <i>□</i>
+                <label class="datebox"><span>Expiration Date</span><input name="engineWarrantyExpiration" value="08.08.2029" /><i><img src="/assets/icons/calendar-icon.svg" width="20" height="20" aria-hidden="true" alt=""></i></label>
                 <button class="toggle" type="button" data-toggle="engineWarranty" aria-label="Engine Warranty enabled"><span></span></button>
               </article>
               <article class="warranty-card">
                 <p>Hull <span>Warranty</span></p>
-                <label class="datebox"><span>Expiration Date</span><input value="08.08.2029" /></label>
-                <i>□</i>
+                <label class="datebox"><span>Expiration Date</span><input name="hullWarrantyExpiration" value="08.08.2029" /><i><img src="/assets/icons/calendar-icon.svg" width="20" height="20" aria-hidden="true" alt=""></i></label>
                 <button class="toggle" type="button" data-toggle="hullWarranty" aria-label="Hull Warranty enabled"><span></span></button>
               </article>
               <article class="warranty-card">
                 <p>Generator <span>Warranty</span></p>
-                <label class="datebox"><span>Expiration Date</span><input value="08.08.2029" /></label>
-                <i>□</i>
+                <label class="datebox"><span>Expiration Date</span><input name="generatorWarrantyExpiration" value="08.08.2029" /><i><img src="/assets/icons/calendar-icon.svg" width="20" height="20" aria-hidden="true" alt=""></i></label>
                 <button class="toggle" type="button" data-toggle="generatorWarranty" aria-label="Generator Warranty enabled"><span></span></button>
               </article>
             </div>
           </section>
 
           <div class="actions">
-            <button class="back" type="button">← Back</button>
-            <button class="save" type="submit">Save &amp; Next →</button>
+            <button class="back" type="button"><img src="/assets/icons/arrow-left-icon.svg" width="20" height="20" aria-hidden="true" alt=""> Back</button>
+            <button class="save" type="submit">Save &amp; Next <img src="/assets/icons/arrow-right-icon.svg" width="20" height="20" aria-hidden="true" alt=""></button>
           </div>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
         </form>
       </section>
     </main>
 
     <div class="modal-backdrop" data-modal hidden>
-      <section class="model-modal" role="dialog" aria-modal="true" aria-labelledby="model-modal-title">
+      <section class="model-modal" role="dialog" aria-modal="true" aria-labelledby="model-modal-title" aria-describedby="model-modal-copy">
         <header>
           <h2 id="model-modal-title">Create New Model</h2>
           <button class="modal-close" type="button" aria-label="Close model creation modal">×</button>
         </header>
-        <p class="modal-copy">This model will appear only under My Created Models for your account unless the shipyard adds an official version later.</p>
+        <p class="modal-copy" id="model-modal-copy">This model will appear only under My Created Models for your account unless the shipyard adds an official version later.</p>
         <label class="field modal-field" for="new-model-name">
           <span>Model Name*</span>
-          <input id="new-model-name" />
+          <input id="new-model-name" name="newModelName" aria-describedby="new-model-message" aria-required="true" placeholder=" " />
           <p class="field-message" id="new-model-message"></p>
         </label>
         <footer>
@@ -220,6 +241,7 @@
         </footer>
       </section>
     </div>
-    <script src="./app.js"></script>
+    <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="/app.js"></script>
   </body>
 </html>

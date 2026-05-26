@@ -1,0 +1,141 @@
+@use "mixins" as *;
+
+@include respond("lg") {
+  .step {
+    width: 100%;
+  }
+
+  .content {
+    width: min(var(--content-width), calc(100vw - var(--rail-width) - 48px));
+    margin-left: 48px;
+  }
+
+  .draft-button {
+    right: 24px;
+  }
+}
+
+@media (min-width: 821px) and (max-width: 1320px) {
+  .header {
+    display: grid;
+    gap: 12px;
+    min-height: auto;
+    margin-bottom: 24px;
+  }
+
+  .heat {
+    position: static;
+    justify-self: start;
+  }
+}
+
+@include respond("md") {
+  body {
+    overflow-x: hidden;
+  }
+
+  .screen {
+    display: block;
+  }
+
+  .rail {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    padding: 18px 20px;
+    border-radius: 0;
+  }
+
+  .brand {
+    transform: scale(0.8);
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .step,
+  .step.current,
+  .step.tour {
+    grid-template-columns: 28px minmax(0, 1fr);
+    width: auto;
+    min-height: 32px;
+    column-gap: 8px;
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .step::after,
+  .step-mark {
+    display: none;
+  }
+
+  .step-icon,
+  .current .step-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 11px;
+  }
+
+  .create-new {
+    margin-top: 12px;
+    font-size: 11px;
+  }
+
+  .draft-button {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    min-width: 160px;
+    background: var(--color-surface);
+  }
+
+  .content {
+    width: min(100% - 32px, var(--content-width));
+    margin: 0 auto;
+    padding: 32px 0 56px;
+  }
+
+  .header {
+    display: grid;
+    gap: 12px;
+    min-height: auto;
+    margin-bottom: 24px;
+  }
+
+  .heat {
+    position: static;
+    justify-self: start;
+  }
+}
+
+@include respond("sm") {
+  .steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .row.two,
+  .actions {
+    grid-template-columns: 1fr;
+  }
+
+  .duty {
+    width: 100%;
+  }
+
+  .market,
+  .warranty-card {
+    grid-template-columns: 1fr;
+  }
+
+  .market {
+    display: grid;
+  }
+
+  .warranty-card {
+    height: auto;
+  }
+}

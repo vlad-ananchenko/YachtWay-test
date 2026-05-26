@@ -1,0 +1,85 @@
+:root {
+  --color-ink: #2f2f39;
+  --color-ink-2: #3c3c46;
+  --color-ink-strong: #22222d;
+  --color-muted: #727279;
+  --color-soft: #8c8c92;
+
+  --color-line: #dcdcde;
+  --color-line-soft: #f1f1f2;
+  --color-line-strong: #bfc0c4;
+  --color-surface: #fff;
+  --color-surface-muted: #f9fafb;
+  --color-surface-alt: #f9fafb;
+  --color-fill-soft: #f9fafb;
+
+  --color-purple: #4b0ea3;
+  --color-purple-tertiary: #7e52be;
+  --color-purple-line: #8b48e7;
+  --color-purple-tint: #fbf8ff;
+  --color-purple-tint-hover: #f6f2ff;
+  --color-count-bg: #fcfafe;
+
+  --color-error-border: #f97066;
+  --color-error-text: #b42318;
+  --color-focus-ring: #9875cb;
+  --color-success-text: #027a48;
+  --color-success-bg: #ecfdf3;
+  --color-success-border: #abefc6;
+  --color-warning: #dc6803;
+  --color-market-arrow: #f79009;
+  --color-info: #4fb7e6;
+  --color-info-bg: #eff9ff;
+
+  --heat-cold: #39a7d8;
+  --heat-cold-bg: #e7f5fb;
+  --heat-warm: #f5a623;
+  --heat-warm-bg: #fff4e3;
+  --heat-hot: #f5731a;
+  --heat-hot-bg: #ffeede;
+  --heat-blazing: #e8420f;
+  --heat-blazing-bg: #ffe6db;
+
+  --rail-grad-1: #08070c;
+  --rail-grad-2: #201235;
+  --rail-grad-3: #1d285a;
+  --rail-grad-4: #002650;
+  --rail-base: #22222d;
+  --on-rail: #fff;
+  --on-rail-faint: rgba(255, 255, 255, 0.2);
+
+  --radius-xs: 2px;
+  --radius-sm: 3px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-pill: 16px;
+  --radius-pill-lg: 20px;
+  --radius-full: 50%;
+
+  --font-body: "Figtree", Arial, sans-serif;
+  --font-display: "Red Hat Display", Arial, sans-serif;
+  --font-heading: "Poppins", Arial, sans-serif;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+
+  --shadow-card: 0 4px 24px 4px rgba(132, 144, 163, 0.08);
+  --shadow-menu: 0 14px 32px rgba(34, 34, 45, 0.14);
+  --shadow-modal: 0 24px 80px rgba(8, 7, 12, 0.28);
+  --shadow-toggle: 0 2px 2px rgba(0, 35, 11, 0.2);
+
+  --page-width: 1440px;
+  --page-height: 2176px;
+  --rail-width: 324px;
+  --rail-height: 800px;
+  --content-width: 564px;
+  --content-offset-x: 256px;
+  --content-offset-y: 64px;
+  --content-offset-bottom: 56px;
+  --desktop-safe-gutter: 80px;
+  --draft-offset-top: 32px;
+  --draft-offset-right: 60px;
+
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 0.16s;
+}

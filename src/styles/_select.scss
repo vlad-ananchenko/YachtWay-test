@@ -1,0 +1,136 @@
+@use "mixins" as *;
+
+.field.select button {
+  justify-content: flex-start;
+  padding-right: 88px;
+}
+
+.field.select:focus-within:not(.has-error):not(.is-locked):not(.is-disabled) > button:not(:disabled) {
+  padding: 8px 87px 6px 11px;
+}
+
+.select-value {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.field.select b {
+  right: 52px;
+}
+
+.field.select .help-dot {
+  right: 44px;
+}
+
+.field.select.open > button::after {
+  @include chevron-open;
+}
+
+.select-menu {
+  display: none;
+  position: absolute;
+  z-index: 60;
+  top: 44px;
+  left: 0;
+  right: 0;
+  max-height: 260px;
+  overflow: auto;
+  padding: 8px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-menu);
+}
+
+.select-menu .select-option {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 34px;
+  height: auto;
+  padding: 7px 8px;
+  color: var(--color-ink);
+  background: var(--color-surface);
+  border: 0;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  line-height: 20px;
+  text-align: left;
+
+  &:hover:not(:disabled) {
+    background: var(--color-purple-tint-hover);
+  }
+
+  &.is-selected {
+    color: var(--color-purple);
+    font-weight: var(--weight-semibold);
+  }
+
+  &:disabled {
+    color: #c5c6ca;
+    background: var(--color-surface);
+    cursor: not-allowed;
+  }
+}
+
+.field.open .select-menu {
+  display: block;
+}
+
+.select-menu .select-option.is-selected::after {
+  content: "";
+  flex: 0 0 16px;
+  width: 16px;
+  height: 16px;
+  margin-left: auto;
+  background: url("/assets/icons/select-checkmark-icon.svg") center / 16px 16px no-repeat;
+}
+
+.field.tag-field {
+  flex-wrap: wrap;
+  padding-right: 90px;
+}
+
+.tag-field .tag-trigger {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 44px;
+  height: 100%;
+  padding: 0;
+  background: transparent;
+  border: 0;
+
+  &::after {
+    @include chevron(16px);
+  }
+}
+
+.tag-field.open .tag-trigger::after {
+  @include chevron-open;
+}
+
+.tag-field em .tag-remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  margin-left: 4px;
+  padding: 0;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  line-height: 1;
+
+  img {
+    display: block;
+    width: 16px;
+    height: 16px;
+  }
+}
