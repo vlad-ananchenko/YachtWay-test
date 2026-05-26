@@ -44,7 +44,8 @@ export class TagField {
     this.badge = document.createElement("b");
     root.append(this.badge);
 
-    this.menu = buildMenu(this.options, (value) => this.add(value));
+    this.menu = buildMenu(this.options, (value) => this.toggleValue(value));
+    this.menu.classList.add("is-multi");
     this.menu.setAttribute("aria-label", label);
     this.menu.setAttribute("aria-multiselectable", "true");
     this.trigger.setAttribute("aria-controls", this.menu.id);
@@ -90,11 +91,15 @@ export class TagField {
     this.render();
   }
 
-  private add(value: string): void {
-    if (!this.selected.includes(value) && this.selected.length < this.max) this.selected.push(value);
-    this.dropdown.close();
+  private toggleValue(value: string): void {
+    const index = this.selected.indexOf(value);
+    if (index >= 0) this.selected.splice(index, 1);
+    else if (this.selected.length < this.max) this.selected.push(value);
+    else return;
+
     this.render();
-    this.trigger.focus();
+    this.dropdown.open();
+    focusPreferredOption(this.menu, value);
   }
 
   private remove(value: string): void {
@@ -132,11 +137,11 @@ export class TagField {
     this.root.classList.toggle("has-value", this.selected.length > 0);
 
     const full = this.selected.length >= this.max;
-    this.trigger.disabled = full;
+    this.trigger.disabled = false;
     for (const option of this.menu.querySelectorAll<HTMLButtonElement>(".select-option")) {
       const selected = this.selected.includes(option.dataset.value ?? "");
       option.classList.toggle("is-selected", selected);
-      option.disabled = selected || full;
+      option.disabled = !selected && full;
       option.setAttribute("aria-selected", String(selected));
     }
   }

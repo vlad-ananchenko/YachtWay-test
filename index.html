@@ -62,7 +62,7 @@
           </div>
         </header>
 
-        <form class="form" novalidate aria-describedby="form-status">
+        <form class="form" novalidate autocomplete="off" aria-describedby="form-status">
           <section class="group vessel-details">
             <h2><img src="/assets/icons/ship-icon.svg" width="16" height="16" aria-hidden="true" alt=""> VESSEL DETAILS</h2>
             <div class="row two">
@@ -91,14 +91,14 @@
               </div>
               <label class="field hull-field" for="hull-number">
                 <span>Hull or Production Number*</span>
-                <input id="hull-number" name="hullNumber" maxlength="20" aria-describedby="hull-message" aria-required="true" placeholder=" " />
+                <input id="hull-number" name="hullNumber" maxlength="20" autocomplete="off" aria-describedby="hull-message" aria-required="true" placeholder=" " />
                 <p class="field-message" id="hull-message"></p>
               </label>
             </div>
-            <label class="field full"><span>Internal ID</span><input name="internalId" placeholder=" " /><i class="help-dot"><img src="/assets/icons/question-mark-icon.svg" width="16" height="16" aria-hidden="true" alt=""></i></label>
+            <label class="field full"><span>Internal ID</span><input name="internalId" autocomplete="off" placeholder=" " /><i class="help-dot"><img src="/assets/icons/question-mark-icon.svg" width="16" height="16" aria-hidden="true" alt=""></i></label>
             <div class="row two">
-              <label class="field"><span>Current Name</span><input name="currentName" placeholder=" " /></label>
-              <label class="field"><span>Launch Name</span><input name="launchName" placeholder=" " /></label>
+              <label class="field"><span>Current Name</span><input name="currentName" autocomplete="off" placeholder=" " /></label>
+              <label class="field"><span>Launch Name</span><input name="launchName" autocomplete="off" placeholder=" " /></label>
             </div>
             <div class="row two segmented" data-segmented="condition">
               <button type="button" data-value="new">New</button>
@@ -134,7 +134,7 @@
               <button type="button" data-value="now">Available Now</button>
               <button type="button" data-value="later">Available Later</button>
             </div>
-            <label class="field full calendar-field"><span>Completion Date</span><input id="completion-date" name="completionDate" placeholder=" " /><i><img src="/assets/icons/calendar-icon.svg" width="20" height="20" aria-hidden="true" alt=""></i></label>
+            <label class="field full calendar-field"><span>Completion Date</span><input id="completion-date" name="completionDate" autocomplete="off" placeholder=" " /><i><img src="/assets/icons/calendar-icon.svg" width="20" height="20" aria-hidden="true" alt=""></i></label>
           </section>
 
           <section class="group good-for">
@@ -150,7 +150,7 @@
               <button type="button" data-value="range">Price Range <i class="help-dot"><img src="/assets/icons/question-mark-icon.svg" width="16" height="16" aria-hidden="true" alt=""></i></button>
               <button type="button" data-value="fixed">Fixed Price</button>
             </div>
-            <label class="field full price-input"><span>Price*</span><input name="price" value="100,000" aria-required="true" /><b>USD</b></label>
+            <label class="field full price-input"><span>Price*</span><input name="price" value="100,000" autocomplete="off" aria-required="true" /><b>USD</b></label>
             <div class="market">
               <div>
                 <strong class="market-signal">
@@ -193,22 +193,22 @@
             <div class="warranty-list">
               <article class="warranty-card">
                 <p>General <span>Warranty</span></p>
-                <label class="datebox"><span>Expiration Date</span><input name="generalWarrantyExpiration" value="08.08.2029" /><i><img src="/assets/icons/calendar-icon.svg" width="20" height="20" aria-hidden="true" alt=""></i></label>
+                <label class="datebox"><span>Expiration Date</span><input name="generalWarrantyExpiration" value="08.08.2029" autocomplete="off" /><i><img src="/assets/icons/calendar-icon.svg" width="20" height="20" aria-hidden="true" alt=""></i></label>
                 <button class="toggle" type="button" data-toggle="generalWarranty" aria-label="General Warranty enabled"><span></span></button>
               </article>
               <article class="warranty-card">
                 <p>Engine <span>Warranty</span></p>
-                <label class="datebox"><span>Expiration Date</span><input name="engineWarrantyExpiration" value="08.08.2029" /><i><img src="/assets/icons/calendar-icon.svg" width="20" height="20" aria-hidden="true" alt=""></i></label>
+                <label class="datebox"><span>Expiration Date</span><input name="engineWarrantyExpiration" value="08.08.2029" autocomplete="off" /><i><img src="/assets/icons/calendar-icon.svg" width="20" height="20" aria-hidden="true" alt=""></i></label>
                 <button class="toggle" type="button" data-toggle="engineWarranty" aria-label="Engine Warranty enabled"><span></span></button>
               </article>
               <article class="warranty-card">
                 <p>Hull <span>Warranty</span></p>
-                <label class="datebox"><span>Expiration Date</span><input name="hullWarrantyExpiration" value="08.08.2029" /><i><img src="/assets/icons/calendar-icon.svg" width="20" height="20" aria-hidden="true" alt=""></i></label>
+                <label class="datebox"><span>Expiration Date</span><input name="hullWarrantyExpiration" value="08.08.2029" autocomplete="off" /><i><img src="/assets/icons/calendar-icon.svg" width="20" height="20" aria-hidden="true" alt=""></i></label>
                 <button class="toggle" type="button" data-toggle="hullWarranty" aria-label="Hull Warranty enabled"><span></span></button>
               </article>
               <article class="warranty-card">
                 <p>Generator <span>Warranty</span></p>
-                <label class="datebox"><span>Expiration Date</span><input name="generatorWarrantyExpiration" value="08.08.2029" /><i><img src="/assets/icons/calendar-icon.svg" width="20" height="20" aria-hidden="true" alt=""></i></label>
+                <label class="datebox"><span>Expiration Date</span><input name="generatorWarrantyExpiration" value="08.08.2029" autocomplete="off" /><i><img src="/assets/icons/calendar-icon.svg" width="20" height="20" aria-hidden="true" alt=""></i></label>
                 <button class="toggle" type="button" data-toggle="generatorWarranty" aria-label="Generator Warranty enabled"><span></span></button>
               </article>
             </div>
@@ -232,7 +232,7 @@
         <p class="modal-copy" id="model-modal-copy">This model will appear only under My Created Models for your account unless the shipyard adds an official version later.</p>
         <label class="field modal-field" for="new-model-name">
           <span>Model Name*</span>
-          <input id="new-model-name" name="newModelName" aria-describedby="new-model-message" aria-required="true" placeholder=" " />
+          <input id="new-model-name" name="newModelName" autocomplete="off" aria-describedby="new-model-message" aria-required="true" placeholder=" " />
           <p class="field-message" id="new-model-message"></p>
         </label>
         <footer>

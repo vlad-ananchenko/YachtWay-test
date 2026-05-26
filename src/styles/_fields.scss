@@ -13,6 +13,7 @@
   min-height: 40px;
 
   &.open {
+    isolation: isolate;
     z-index: 50;
   }
 
@@ -144,41 +145,61 @@
 }
 
 .field-message {
-  display: none;
+  position: absolute;
+  z-index: 4;
+  top: calc(100% + 4px);
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
   margin: 0;
   color: var(--color-error-text);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  white-space: nowrap;
+  visibility: hidden;
+  pointer-events: none;
+
+  &::before {
+    content: "";
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    background: var(--color-error-icon);
+    -webkit-mask: url("/assets/icons/exclamation-mark-icon.svg") center / 16px 16px no-repeat;
+    mask: url("/assets/icons/exclamation-mark-icon.svg") center / 16px 16px no-repeat;
+  }
 }
 
 .field.has-error {
   input,
-  button {
+  > button:not(.combo-toggle),
+  &.tag-field {
     border-color: var(--color-error-border);
+    border-radius: var(--radius-xs);
+  }
+
+  &:hover:not(:focus-within) {
+    input,
+    > button:not(.combo-toggle),
+    &.tag-field {
+      border-color: var(--color-error-border-hover);
+    }
+  }
+
+  &:focus-within {
+    input,
+    > button:not(.combo-toggle),
+    &.tag-field {
+      border-color: var(--color-error-border);
+      border-width: 2px;
+      border-radius: var(--radius-xs);
+    }
   }
 
   .field-message {
-    display: flex;
-    align-items: flex-start;
-    gap: 4px;
-    margin-top: 8px;
-
-    &::before {
-      content: "i";
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 16px;
-      height: 16px;
-      background: var(--color-error-text);
-      border-radius: var(--radius-full);
-      color: #fff;
-      font-size: 10px;
-      font-style: italic;
-      font-weight: var(--weight-semibold);
-      line-height: 1;
-    }
+    visibility: visible;
   }
 }
 
@@ -190,21 +211,43 @@
 
   > span:first-child,
   > label:first-child {
-    color: #c5c6ca;
+    color: var(--color-disabled-text);
   }
 
   input,
   > button:not(.combo-toggle),
   &.tag-field {
-    color: #c5c6ca;
+    color: var(--color-disabled-text);
     background: var(--color-surface-muted);
-    border-color: transparent;
+    border-color: var(--color-line-soft);
     cursor: not-allowed;
   }
 
   .help-dot,
   b {
     opacity: 0.55;
+  }
+
+  .help-dot img,
+  i img {
+    filter: brightness(0) saturate(100%) invert(83%) sepia(4%) saturate(102%) hue-rotate(202deg) brightness(91%) contrast(88%);
+  }
+
+  > button::after,
+  .tag-trigger::after {
+    background: var(--color-disabled-icon);
+  }
+}
+
+.field.is-disabled:not(.is-locked),
+.field:has(> input:disabled):not(.is-locked),
+.field.select:has(> button:disabled):not(.is-locked) {
+  > span:first-child,
+  > label:first-child {
+    top: var(--field-label-resting-top);
+    background: transparent;
+    font-size: var(--field-label-resting-size);
+    line-height: 20px;
   }
 }
 
@@ -335,19 +378,19 @@
 .vessel-details .field {
   --field-label-left: 8px;
   --field-label-resting-top: 20px;
-  --field-label-floating-top: 7px;
+  --field-label-floating-top: 1px;
 
   > input,
   &.select > button {
-    padding-top: 15px;
-    padding-bottom: 1px;
+    padding-top: 9px;
+    padding-bottom: 7px;
   }
 
   &:focus-within:not(.has-error):not(.is-locked):not(.is-disabled) {
     > input,
     &.select > button:not(:disabled) {
-      padding-top: 14px;
-      padding-bottom: 0;
+      padding-top: 8px;
+      padding-bottom: 6px;
     }
   }
 }

@@ -31,7 +31,10 @@ export function buildMenu(options: Option[], onPick: (value: string) => void, id
     button.setAttribute("role", "option");
     button.tabIndex = -1;
     button.dataset.value = option.value;
-    button.textContent = option.label;
+    const label = document.createElement("span");
+    label.className = "select-option-label";
+    label.textContent = option.label;
+    button.append(label);
     button.addEventListener("click", () => onPick(option.value));
     menu.append(button);
   }

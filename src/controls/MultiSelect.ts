@@ -43,6 +43,7 @@ export class MultiSelect {
     this.trigger.append(this.valueEl);
 
     this.menu = buildMenu(this.options, (value) => this.toggleValue(value));
+    this.menu.classList.add("is-multi");
     this.menu.setAttribute("aria-multiselectable", "true");
     this.menu.setAttribute("aria-label", label);
     this.trigger.setAttribute("aria-controls", this.menu.id);

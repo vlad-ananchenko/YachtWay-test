@@ -44,8 +44,13 @@
     color: var(--color-soft);
 
     .datebox input {
-      color: var(--color-soft);
+      color: var(--color-disabled-text);
       background: var(--color-surface-muted);
+      border-color: var(--color-line-soft);
+    }
+
+    .datebox i img {
+      filter: brightness(0) saturate(100%) invert(83%) sepia(4%) saturate(102%) hue-rotate(202deg) brightness(91%) contrast(88%);
     }
   }
 }

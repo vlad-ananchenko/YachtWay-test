@@ -23,6 +23,19 @@ function activeComboIndex(menu: HTMLElement): number {
   return document.activeElement instanceof HTMLButtonElement ? options.indexOf(document.activeElement) : -1;
 }
 
+function comboOptionValue(option: HTMLButtonElement): string {
+  return option.childNodes[0]?.textContent?.trim() ?? option.textContent?.trim() ?? "";
+}
+
+function syncComboSelection(input: HTMLInputElement, menu: HTMLElement): void {
+  const value = input.value.trim();
+  for (const option of menu.querySelectorAll<HTMLButtonElement>(".combo-option")) {
+    const selected = value.length > 0 && comboOptionValue(option) === value;
+    option.classList.toggle("is-selected", selected);
+    option.setAttribute("aria-selected", String(selected));
+  }
+}
+
 function closeCombo(field: HTMLElement, input: HTMLInputElement): void {
   field.classList.remove("open");
   input.setAttribute("aria-expanded", "false");
@@ -38,6 +51,17 @@ function enhanceComboboxKeyboard(scope: ParentNode): void {
     input.setAttribute("aria-haspopup", "listbox");
     input.setAttribute("aria-autocomplete", "list");
 
+    const syncSelection = (): void => syncComboSelection(input, menu);
+    syncSelection();
+    input.addEventListener("input", syncSelection);
+    input.addEventListener("change", syncSelection);
+    input.addEventListener("focus", () => requestAnimationFrame(syncSelection));
+    new MutationObserver(syncSelection).observe(menu, { childList: true, subtree: true });
+
+    toggle.addEventListener("mousedown", (event) => {
+      event.preventDefault();
+    });
+
     input.addEventListener("keydown", (event) => {
       if (event.key === "ArrowDown") {
         event.preventDefault();
@@ -49,6 +73,10 @@ function enhanceComboboxKeyboard(scope: ParentNode): void {
         event.preventDefault();
         if (!field.classList.contains("open")) toggle.click();
         requestAnimationFrame(() => focusComboOption(menu, enabledComboOptions(menu).length - 1));
+      }
+
+      if (event.key === "Tab") {
+        closeCombo(field, input);
       }
     });
 
@@ -80,11 +108,16 @@ function enhanceComboboxKeyboard(scope: ParentNode): void {
         closeCombo(field, input);
         input.focus();
       }
+
+      if (event.key === "Tab") {
+        closeCombo(field, input);
+      }
     });
 
     menu.addEventListener("click", (event) => {
       if (!(event.target instanceof Element) || !event.target.closest(COMBO_OPTION_SELECTOR)) return;
       requestAnimationFrame(() => {
+        syncSelection();
         input.focus();
         closeCombo(field, input);
       });

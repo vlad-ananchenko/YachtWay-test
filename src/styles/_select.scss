@@ -31,68 +31,109 @@
 }
 
 .select-menu {
-  display: none;
-  position: absolute;
-  z-index: 60;
-  top: 44px;
-  left: 0;
-  right: 0;
-  max-height: 260px;
-  overflow: auto;
-  padding: 8px;
-  background: var(--color-surface);
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-menu);
+  --select-option-indicator-right: 16px;
+
+  @include dropdown-menu;
 }
 
 .select-menu .select-option {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  min-height: 34px;
-  height: auto;
-  padding: 7px 8px;
-  color: var(--color-ink);
-  background: var(--color-surface);
-  border: 0;
-  border-radius: var(--radius-sm);
-  font-size: 14px;
-  line-height: 20px;
-  text-align: left;
+  @include menu-option(7px calc(var(--select-option-indicator-right) + 36px) 7px 16px);
 
-  &:hover:not(:disabled) {
+  &:hover:not(:disabled),
+  &:focus-visible:not(:disabled) {
     background: var(--color-purple-tint-hover);
+    outline: none;
   }
 
   &.is-selected {
     color: var(--color-purple);
-    font-weight: var(--weight-semibold);
+    background: var(--color-select-selected-bg);
+    font-weight: var(--weight-medium);
+  }
+
+  &.is-selected:hover:not(:disabled),
+  &.is-selected:focus-visible:not(:disabled) {
+    background: var(--color-select-selected-bg);
   }
 
   &:disabled {
-    color: #c5c6ca;
+    color: var(--color-disabled-text);
     background: var(--color-surface);
     cursor: not-allowed;
   }
+
+  &.is-selected:disabled {
+    color: var(--color-purple);
+    background: var(--color-select-selected-bg);
+  }
+}
+
+.select-option-label {
+  min-width: 0;
+}
+
+.select-menu.has-help .select-option-label::after {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-left: 4px;
+  background: url("/assets/icons/question-mark-icon.svg") center / 16px 16px no-repeat;
+  vertical-align: -4px;
 }
 
 .field.open .select-menu {
   display: block;
 }
 
-.select-menu .select-option.is-selected::after {
+.select-menu:not(.is-multi) .select-option.is-selected::after {
   content: "";
-  flex: 0 0 16px;
+  position: absolute;
+  right: var(--select-option-indicator-right);
+  top: 50%;
   width: 16px;
   height: 16px;
-  margin-left: auto;
   background: url("/assets/icons/select-checkmark-icon.svg") center / 16px 16px no-repeat;
+  transform: translateY(-50%);
+}
+
+.select-menu.is-multi .select-option::after {
+  content: "";
+  position: absolute;
+  right: var(--select-option-indicator-right);
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  transform: translateY(-50%);
+}
+
+.select-menu.is-multi .select-option.is-selected::after {
+  background:
+    url("/assets/icons/select-checkmark-icon.svg") center / 16px 16px no-repeat,
+    var(--color-surface);
+  border-color: var(--color-purple-line);
+}
+
+.select-menu.is-multi .select-option:disabled:not(.is-selected)::after {
+  background: var(--color-surface-muted);
+  border-color: var(--color-line-soft);
 }
 
 .field.tag-field {
   flex-wrap: wrap;
   padding-right: 90px;
+}
+
+.vessel-location .select-menu {
+  --select-option-indicator-right: 12px;
+}
+
+.vessel-type .select-menu,
+.good-for .select-menu {
+  --select-option-indicator-right: 12px;
 }
 
 .tag-field .tag-trigger {

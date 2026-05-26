@@ -3,6 +3,7 @@
 .combo {
   input {
     padding-right: 44px;
+    cursor: text;
   }
 
   &.open .combo-menu {
@@ -19,6 +20,7 @@
   padding: 0 !important;
   border: 0 !important;
   background: transparent !important;
+  cursor: pointer;
 
   &::after {
     @include chevron(14px);
@@ -34,79 +36,98 @@
 }
 
 .combo-menu {
-  position: absolute;
-  z-index: 60;
-  top: 44px;
-  left: 0;
-  right: 0;
-  display: none;
-  max-height: 260px;
-  overflow: auto;
-  padding: 8px;
-  background: var(--color-surface);
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-menu);
+  @include dropdown-menu;
 }
 
 .combo-group {
-  margin: 0 0 8px;
+  margin: 0;
+  padding: 8px 0;
 
   &:last-child {
-    margin-bottom: 0;
+    padding-bottom: 8px;
+  }
+
+  &:not(:has(.combo-option)):not(:has(.combo-empty)) {
+    display: none;
   }
 }
 
 .combo-group-title {
-  padding: 6px 8px;
+  padding: 6px 16px 8px;
   color: var(--color-muted);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: var(--weight-semibold);
-  line-height: 14px;
+  line-height: 16px;
   text-transform: uppercase;
 }
 
-.combo-option,
-.combo-create {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  min-height: 34px;
-  padding: 6px 8px;
-  color: var(--color-ink);
-  background: var(--color-surface);
-  border: 0;
-  border-radius: var(--radius-sm);
-  font-size: 14px;
-  line-height: 20px;
-  text-align: left;
+.combo-menu .combo-option,
+.combo-menu .combo-create {
+  @include menu-option(7px 52px 7px 16px);
+  cursor: pointer;
 }
 
-.combo-option:hover:not(:disabled),
-.combo-option.active:not(:disabled),
-.combo-create:hover:not(:disabled) {
+.combo-menu .combo-option:hover:not(:disabled),
+.combo-menu .combo-option.active:not(:disabled),
+.combo-menu .combo-create:hover:not(:disabled),
+.combo-menu .combo-option:focus-visible:not(:disabled),
+.combo-menu .combo-create:focus-visible:not(:disabled) {
   background: var(--color-purple-tint-hover);
+  outline: none;
 }
 
-.combo-option.connected {
+.combo-menu .combo-option.connected {
   color: var(--color-purple);
-  font-weight: var(--weight-semibold);
+  font-weight: var(--weight-medium);
 }
 
-.combo-option small {
+.combo-menu .combo-option.is-selected {
+  color: var(--color-purple);
+  background: var(--color-select-selected-bg);
+  font-weight: var(--weight-medium);
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    width: 16px;
+    height: 16px;
+    background: url("/assets/icons/select-checkmark-icon.svg") center / 16px 16px no-repeat;
+    transform: translateY(-50%);
+  }
+}
+
+.combo-menu .combo-option.is-selected:hover:not(:disabled),
+.combo-menu .combo-option.is-selected:focus-visible:not(:disabled) {
+  background: var(--color-select-selected-bg);
+}
+
+.combo-menu .combo-option small {
   margin-left: auto;
   color: var(--color-soft);
   font-size: 11px;
 }
 
-.combo-create {
+.combo-menu .combo-create {
   color: var(--color-purple);
-  font-weight: var(--weight-semibold);
+  font-weight: var(--weight-medium);
 }
 
 .combo-empty {
-  padding: 10px 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
   color: var(--color-muted);
   font-size: 12px;
   line-height: 18px;
+
+  &::before {
+    content: "";
+    flex: 0 0 auto;
+    width: 16px;
+    height: 16px;
+    background: url("/assets/icons/exclamation-mark-icon.svg") center / 16px 16px no-repeat;
+  }
 }

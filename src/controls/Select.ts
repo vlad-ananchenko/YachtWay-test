@@ -31,6 +31,7 @@ export class Select {
     this.trigger.append(this.valueEl);
 
     this.menu = buildMenu(this.options, (value) => this.select(value));
+    if (root.querySelector(":scope > .help-dot")) this.menu.classList.add("has-help");
     this.menu.setAttribute("aria-label", label);
     this.trigger.setAttribute("aria-controls", this.menu.id);
     root.append(this.menu);
